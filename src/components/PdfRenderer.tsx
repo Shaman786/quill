@@ -30,15 +30,13 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
       </div>
       <div className="flex-1 w-full max-h-screen">
         <div>
-          <Document>
-            loading=
-            {
+          <Document
+            loading={
               <div className="flex justify-center">
                 <Loader2 className="my-24 h-6 w-6 animate-spin" />
               </div>
             }
-            onLoadError=
-            {() => {
+            onLoadError={() => {
               toast({
                 title: "Error loading PDF",
                 description: "Please try again later",
@@ -47,6 +45,7 @@ const PdfRenderer = ({ url }: PdfRendererProps) => {
             }}
             file={url}
             className={"max-h-full"}
+          >
             <Page pageNumber={1} />
           </Document>
         </div>
