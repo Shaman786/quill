@@ -1,7 +1,7 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import {
-  RegisterLink,
   LoginLink,
+  RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";

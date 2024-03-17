@@ -9,8 +9,9 @@ export const appRouter = router({
     const { getUser } = getKindeServerSession();
     const user = await getUser();
 
-    if (!user?.id || !user?.email)
+    if (!user?.id || !user?.email) {
       throw new TRPCError({ code: "UNAUTHORIZED" });
+    }
     // check if the user is in the database
     const dbUser = await db.user.findFirst({
       where: {
@@ -56,7 +57,7 @@ export const appRouter = router({
     .input(
       z.object({
         id: z.string(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const { userId } = ctx;
