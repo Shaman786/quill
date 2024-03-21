@@ -36,6 +36,17 @@ export const appRouter = router({
       },
     });
   }),
+  getFileUploadStatus: privateProcedure
+    .input(z.object({ fileId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const file = await db.file.findFirst({
+        where: {
+          id: input.fileId,
+          userId: ctx.userId,
+        },
+      });
+    }),
+
   getFile: privateProcedure
     .input(z.object({ key: z.string() }))
     .mutation(async ({ ctx, input }) => {
@@ -57,7 +68,7 @@ export const appRouter = router({
     .input(
       z.object({
         id: z.string(),
-      }),
+      })
     )
     .mutation(async ({ ctx, input }) => {
       const { userId } = ctx;
